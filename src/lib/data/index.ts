@@ -1,0 +1,5 @@
+export { categories } from "@/lib/data/categories"
+export { featuredBrands } from "@/lib/data/brands"
+export { industries } from "@/lib/data/industries"
+export { proudProducts } from "@/lib/data/products"
+export { trustFeatures } from "@/lib/data/trust"
