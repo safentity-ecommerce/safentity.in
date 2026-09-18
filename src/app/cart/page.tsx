@@ -238,7 +238,7 @@ export default function CartPage() {
               <Link href="/checkout">
                 <Button
                   size="lg"
-                  className="w-full h-12 bg-brand hover:bg-brand-dark text-white font-semibold"
+                  className="w-full h-12 bg-brand hover:bg-brand-dark text-white font-semibold cursor-pointer"
                 >
                   Proceed to Checkout
                 </Button>

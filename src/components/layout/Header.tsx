@@ -16,10 +16,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { useState } from "react"
+import { useCart } from "../context/CartContext"
 
 export function Header() {
   const { isScrolled, isVisible } = useScrollDirection()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const { cartCount } = useCart()
 
   return (
     <header
@@ -121,9 +124,11 @@ export function Header() {
               <ShoppingCart className="h-5 w-5" />
               <span className="hidden lg:inline">Cart</span>
 
-              <Badge className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand p-0 text-[10px] font-bold text-white">
-                3
-              </Badge>
+              {cartCount > 0 && (
+                <Badge className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand p-0 text-[10px] font-bold text-white">
+                  {cartCount}
+                </Badge>
+              )}
             </Link>
           </div>
         </div>

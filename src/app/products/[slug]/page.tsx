@@ -288,7 +288,7 @@ export default function ProductDetailPage() {
             <div className="flex items-center gap-3">
               <Button
                 size="lg"
-                className="flex-1 h-12 text-base font-semibold bg-brand hover:bg-brand-dark text-white"
+                className="flex-1 h-12 text-base font-semibold bg-brand hover:bg-brand-dark text-white cursor-pointer"
                 onClick={() => {
                   addToCart(product, quantity)
                   toast.success(`${product.name} added to cart`)
