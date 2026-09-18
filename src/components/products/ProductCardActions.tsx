@@ -3,18 +3,26 @@
 import { Heart, ShoppingCart, FileText, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { Product } from "@/types"
+import { useCart } from "@/components/context/CartContext"
+import { toast } from "sonner"
 
 interface ProductCardActionsProps {
   product: Product
 }
 
 export function ProductCardActions({ product }: ProductCardActionsProps) {
+  const { addToCart } = useCart()
+
   return (
     <>
       {product.stockStatus !== "out_of_stock" ? (
         <Button
           size="sm"
-          className="flex-1 h-9 text-xs font-semibold bg-brand hover:bg-brand-dark text-white"
+          className="flex-1 h-9 text-xs font-semibold bg-brand hover:bg-brand-dark text-white cursor-pointer"
+          onClick={() => {
+            addToCart(product)
+            toast.success(`${product.name} added to cart`)
+          }}
         >
           <ShoppingCart className="h-3.5 w-3.5 mr-1.5" />
           Add to Cart
@@ -29,22 +37,6 @@ export function ProductCardActions({ product }: ProductCardActionsProps) {
           Out of Stock
         </Button>
       )}
-      {/* <Button
-        size="sm"
-        variant="outline"
-        className="h-9 w-9 p-0"
-        aria-label="Request a quote"
-      >
-        <FileText className="h-3.5 w-3.5" />
-      </Button> */}
-      {/* <Button
-        size="sm"
-        variant="outline"
-        className="h-9 w-9 p-0"
-        aria-label="Compare this product"
-      >
-        <BarChart3 className="h-3.5 w-3.5" />
-      </Button> */}
     </>
   )
 }

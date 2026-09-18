@@ -32,11 +32,15 @@ import { ProductCard } from "@/components/products/ProductCard"
 import { proudProducts } from "@/lib/data/products"
 import { cn, formatINR } from "@/lib/utils"
 import Image from "next/image"
+import { useCart } from "@/components/context/CartContext"
+import { toast } from "sonner"
 
 export default function ProductDetailPage() {
   const params = useParams<{ slug: string | string[] }>()
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug
   const product = proudProducts.find((p) => p.slug === slug)
+
+  const { addToCart } = useCart()
 
   if (!product) {
     notFound()
@@ -285,6 +289,10 @@ export default function ProductDetailPage() {
               <Button
                 size="lg"
                 className="flex-1 h-12 text-base font-semibold bg-brand hover:bg-brand-dark text-white"
+                onClick={() => {
+                  addToCart(product, quantity)
+                  toast.success(`${product.name} added to cart`)
+                }}
               >
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 Add to Cart
