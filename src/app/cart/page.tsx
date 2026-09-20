@@ -21,7 +21,6 @@ import { useCart } from "@/components/context/CartContext"
 
 export default function CartPage() {
   const [promoCode, setPromoCode] = useState("")
-
   const { cartItems, updateQuantity, removeFromCart } = useCart()
 
   const subtotal = cartItems.reduce(
@@ -244,10 +243,10 @@ export default function CartPage() {
                 </Button>
               </Link>
 
-              <div className="flex items-center gap-2 text-xs text-muted-foreground justify-center">
+              {/* <div className="flex items-center gap-2 text-xs text-muted-foreground justify-center">
                 <Shield className="h-3.5 w-3.5" />
                 Secure checkout with SSL encryption
-              </div>
+              </div> */}
 
               {/* Estimated Delivery */}
               <div className="p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground">

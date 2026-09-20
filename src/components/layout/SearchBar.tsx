@@ -71,13 +71,13 @@ export function SearchBar() {
   const showResults = isFocused && (query.length > 0 || isOpen)
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-3xl mx-auto">
+    <div ref={containerRef} className="relative w-full max-w-xl mx-auto">
       <div
         className={cn(
-          "relative flex h-14 items-center rounded-full border bg-white transition-all duration-200",
+          "relative flex h-11 items-center rounded-lg border bg-white transition-all duration-200",
           isFocused
-            ? "border-gray-400 shadow-sm"
-            : "border-gray-300 shadow-sm hover:border-gray-400",
+            ? "border-gray-400 "
+            : "border-gray-300  hover:border-gray-400",
         )}
       >
         <Search className="ml-4 h-5 w-5 shrink-0 text-gray-700" />
@@ -94,7 +94,7 @@ export function SearchBar() {
             setIsOpen(true)
           }}
           placeholder="Search products, brands, part numbers, SKU, IS standards..."
-          className="h-full border-0 bg-transparent px-3 text-lg font-medium text-gray-800 shadow-none focus-visible:ring-0 placeholder:text-gray-500"
+          className="h-full border-0 bg-transparent px-3 text-lg font-medium text-gray-700 shadow-none focus-visible:ring-0 placeholder:text-gray-500"
         />
 
         {query && (

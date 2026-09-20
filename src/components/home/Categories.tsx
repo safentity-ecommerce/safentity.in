@@ -85,12 +85,12 @@ export default function Categories() {
 
           <div
             ref={sliderRef}
-            className="flex gap-14 overflow-x-hidden px-12 py-2 scroll-smooth"
+            className="flex gap-10 lg:gap-16 overflow-x-hidden px-2 py-2 scroll-smooth"
           >
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="w-[13.125rem] min-w-[13.125rem] cursor-pointer transition-all duration-[0.15s] ease-in hover:outline-hover"
+                className="w-30 min-w-34 sm:w-32 sm:min-w-32 lg:w-34 lg:min-w-34 cursor-pointer transition-all duration-[0.15s] ease-in hover:outline-hover"
               >
                 <Link
                   href={`/categories/${category.slug}`}

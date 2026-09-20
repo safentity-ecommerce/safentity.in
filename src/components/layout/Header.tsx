@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Heart, ShoppingCart, User, Menu, X } from "lucide-react"
+import { Heart, ShoppingCart, User, Menu, X, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { SearchBar } from "@/components/layout/SearchBar"
@@ -38,43 +38,99 @@ export function Header() {
           isScrolled && "shadow-sm",
         )}
       >
-        <div className="container flex items-center justify-between gap-4 h-16 lg:h-28">
+        <div className="container flex items-center justify-between gap-4 h-16 lg:h-22">
           {/* Mobile Menu Toggle */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger
-              className="lg:hidden inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted h-8 w-8 shrink-0"
+              className="lg:hidden group relative flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background transition-all duration-200 hover:border-primary/40 hover:bg-muted active:scale-95"
               aria-label="Open menu"
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] p-0">
+
+            <SheetContent
+              side="left"
+              className="w-[310px] border-r border-border/60 bg-background p-0 shadow-2xl"
+            >
               <SheetTitle className="sr-only">Navigation menu</SheetTitle>
-              <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between p-4 border-b">
-                  <span className="text-lg font-bold">{SITE_NAME}</span>
-                  <Button
+
+              <div className="flex h-full flex-col">
+                {/* Header */}
+                <div className="flex items-center justify-between border-b px-5 py-4">
+                  <div>
+                    <span className="text-lg font-bold tracking-tight">
+                      {SITE_NAME}
+                    </span>
+                  </div>
+
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setMobileMenuOpen(false)}
+                    className="h-8 w-8 rounded-lg transition-all hover:bg-muted active:scale-90"
                     aria-label="Close menu"
                   >
-                    <X className="h-5 w-5" />
-                  </Button>
+                    <X className="h-4 w-4" />
+                  </Button> */}
                 </div>
-                <div className="flex-1 overflow-y-auto p-4 space-y-1">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 pb-2">
-                    Navigation
+
+                {/* Navigation */}
+                <div className="flex-1 overflow-y-auto px-3 py-5">
+                  <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                    Menu
                   </p>
-                  {navigationItems.map((item) => (
+
+                  <nav className="space-y-1">
+                    {navigationItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="
+                group flex items-center justify-between
+                rounded-xl px-3.5 py-3
+                text-sm font-medium
+                transition-all duration-200
+                hover:bg-muted
+                hover:translate-x-1
+              "
+                      >
+                        <span>{item.label}</span>
+
+                        <ArrowRight
+                          className="
+                  h-4 w-4
+                  text-muted-foreground
+                  opacity-0
+                  -translate-x-2
+                  transition-all duration-200
+                  group-hover:translate-x-0
+                  group-hover:opacity-100
+                "
+                        />
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+
+                {/* Bottom section */}
+                <div className="border-t bg-muted/30 p-4">
+                  <div className="rounded-xl bg-background p-4 shadow-sm">
+                    <p className="text-sm font-semibold">Need help?</p>
+
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      Talk to our safety equipment specialists.
+                    </p>
+
                     <Link
-                      key={item.label}
-                      href={item.href}
-                      className="flex items-center px-3 py-2.5 text-sm rounded-md hover:bg-muted transition-colors"
+                      href="/contact"
                       onClick={() => setMobileMenuOpen(false)}
+                      className="mt-3 inline-flex items-center text-xs font-semibold text-primary hover:underline"
                     >
-                      {item.label}
+                      Contact us
+                      <ArrowRight className="ml-1 h-3.5 w-3.5" />
                     </Link>
-                  ))}
+                  </div>
                 </div>
               </div>
             </SheetContent>
@@ -89,37 +145,37 @@ export function Header() {
                 width={180}
                 height={50}
                 priority
-                className="h-32 w-auto"
+                className="h-24 w-auto"
               />
             </div>
           </Link>
 
           {/* Search Bar */}
-          <div className="flex-1 max-w-3xl lg:max-w-3xl hidden sm:block">
+          <div className="flex-1 max-w-2xl lg:max-w-3xl hidden sm:block">
             <SearchBar />
           </div>
 
           {/* Right Actions */}
           <div className="flex items-center gap-1.5">
-            <Link
+            {/* <Link
               href="/account/wishlist"
-              className="hidden sm:flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-base font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
+              className="hidden sm:flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
             >
               <Heart className="h-5 w-5" />
               <span className="hidden lg:inline">Wishlist</span>
-            </Link>
+            </Link> */}
 
             <Link
               href="/account/dashboard"
-              className="hidden sm:flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-base font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
+              className="hidden sm:flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
             >
               <User className="h-5 w-5" />
-              <span className="hidden lg:inline">Account</span>
+              <span className="hidden lg:inline">Login</span>
             </Link>
 
             <Link
               href="/cart"
-              className="relative flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-base font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
+              className="relative flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
             >
               <ShoppingCart className="h-5 w-5" />
               <span className="hidden lg:inline">Cart</span>
