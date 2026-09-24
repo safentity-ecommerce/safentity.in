@@ -2,8 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Heart, ShoppingCart, User, Menu, X, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ShoppingCart, Menu, ArrowRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { SearchBar } from "@/components/layout/SearchBar"
 import { useScrollDirection } from "@/hooks/useScrollDirection"
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/sheet"
 import { useState } from "react"
 import { useCart } from "../context/CartContext"
+import { AuthButton } from "@/components/auth/AuthButton"
 
 export function Header() {
   const { isScrolled, isVisible } = useScrollDirection()
@@ -115,7 +115,8 @@ export function Header() {
 
                 {/* Bottom section */}
                 <div className="border-t bg-muted/30 p-4">
-                  <div className="rounded-xl bg-background p-4 shadow-sm">
+                  <AuthButton fullWidth className="border-border/60 bg-background hover:bg-muted" />
+                  <div className="mt-2 rounded-xl bg-background p-4 shadow-sm">
                     <p className="text-sm font-semibold">Need help?</p>
 
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
@@ -165,13 +166,7 @@ export function Header() {
               <span className="hidden lg:inline">Wishlist</span>
             </Link> */}
 
-            <Link
-              href="/account/dashboard"
-              className="hidden sm:flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
-            >
-              <User className="h-5 w-5" />
-              <span className="hidden lg:inline">Login</span>
-            </Link>
+            <AuthButton />
 
             <Link
               href="/cart"

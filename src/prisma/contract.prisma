@@ -1,0 +1,29 @@
+// use prisma-8
+//
+// Authoritative data contract for the application database.
+// Edit this file, then regenerate the emitted artifacts with:
+//   node node_modules/prisma/dist/prisma.js contract emit
+// Never edit src/prisma/contract.json or src/prisma/contract.d.ts by hand.
+
+model User {
+  id        String            @id @default(uuid())
+  phone     String?           @unique
+  name      String?
+  email     String?           @unique
+  password  String?           @map("password_hash")
+  createdAt TimestamptzString @default(now())
+  updatedAt TimestamptzString @default(now())
+
+  @@map("users")
+}
+
+model OtpChallenge {
+  id        String            @id @default(uuid())
+  phone     String
+  codeHash  String
+  attempts  Int               @default(0)
+  expiresAt TimestamptzString
+  createdAt TimestamptzString @default(now())
+
+  @@map("otp_challenges")
+}
